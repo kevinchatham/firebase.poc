@@ -1,0 +1,16 @@
+<div class="absolute bottom-0 left-0 right-0 top-0 bg-slate-800 text-white">
+  <div class="flex h-full w-full items-center justify-center">
+    <ng-container *ngIf="users$ | async as users; else noUsers">
+      <ng-container *ngIf="users.length > 0; else noUsers">
+        <ul>
+          <li *ngFor="let u of users; trackBy: trackByFn">
+            {{ u.name }}
+          </li>
+        </ul>
+      </ng-container>
+    </ng-container>
+    <ng-template #noUsers>
+      <p>No users available.</p>
+    </ng-template>
+  </div>
+</div>
