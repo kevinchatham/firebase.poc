@@ -1,18 +1,26 @@
-import Fastify from 'fastify';
-import logger from './logger.js';
-import routes from './plugins/routes.js';
+import { serve } from '@hono/node-server';
+import { Hono } from 'hono';
+import { logger } from 'hono/logger';
+import rootRoutes from './routes/root.routes';
 
-const server = Fastify({ logger });
+enum AnsiColor {
+  Reset = '\x1b[0m',
+  Bold = '\x1b[1m',
+  Underline = '\x1b[4m',
+  Orange = '\x1b[38;2;255;165;0m',
+}
 
-server.register(routes);
+const app = new Hono();
 
-const serve = async () => {
-  try {
-    await server.listen({ port: 3000 });
-  } catch (err) {
-    server.log.error(err);
-    process.exit(1);
-  }
-};
+app.use(logger());
+app.route('/', rootRoutes);
 
-serve();
+const port = 3000;
+serve({
+  fetch: app.fetch,
+  port,
+});
+
+console.log(`
+${AnsiColor.Orange}${AnsiColor.Bold} Hono @ ${AnsiColor.Underline}http://localhost:${port}${AnsiColor.Reset} ${AnsiColor.Orange}->${AnsiColor.Reset} ️‍🔥️‍🔥️‍🔥 ${AnsiColor.Reset}
+`);

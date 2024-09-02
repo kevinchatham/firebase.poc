@@ -1,23 +1,21 @@
-# Firestore POC with Fastify API and Angular App
+# Firestore POC
 
-This project is a proof of concept for integrating a Firestore database with a Fastify API and an Angular application. The following steps will guide you through setting up the project.
+This project is a proof of concept for integrating a Firestore, including client side offline storage, with [Hono](https://hono.dev) and Angular.
 
 # Table of Contents
 
-- [Firestore POC with Fastify API and Angular App](#firestore-poc-with-fastify-api-and-angular-app)
-  - [Prerequisites](#prerequisites)
-  - [Setup Instructions](#setup-instructions)
-    - [1. Create Google Cloud Console and Firebase Projects](#1-create-google-cloud-console-and-firebase-projects)
-    - [2. Update Angular Configuration](#2-update-angular-configuration)
-    - [3. Create Service Account Key](#3-create-service-account-key)
-    - [4. Create `key.ts` File](#4-create-keyts-file)
-    - [5. Install Node.js](#5-install-nodejs)
-    - [6. Install Dependencies](#6-install-dependencies)
-    - [7. Run the Application](#7-run-the-application)
-    - [8. Access the Applications](#8-access-the-applications)
-  - [Project Structure](#project-structure)
-  - [Notes](#notes)
-  - [License](#license)
+- [Prerequisites](#prerequisites)
+- [Setup Instructions](#setup-instructions)
+  - [1. Create Google Cloud Console and Firebase Projects](#1-create-google-cloud-console-and-firebase-projects)
+  - [2. Update Angular Configuration](#2-update-angular-configuration)
+  - [3. Create Service Account Key](#3-create-service-account-key)
+  - [4. Create `key.ts` File](#4-create-keyts-file)
+  - [5. Install Node.js](#5-install-nodejs)
+  - [6. Install Dependencies](#6-install-dependencies)
+  - [7. Run the Application](#7-run-the-application)
+  - [8. Access the Applications](#8-access-the-applications)
+- [Project Structure](#project-structure)
+- [Notes](#notes)
 
 ## Prerequisites
 
@@ -49,6 +47,8 @@ This project is a proof of concept for integrating a Firestore database with a F
 
 ### 4. Create `key.ts` File
 
+Instead of pulling from environment vars I'm just including the key in ts directly but ignoring it from source control.
+
 1. Copy the template file `api/src/key.template.ts` to `api/src/key.ts`.
 2. Open the `api/src/key.ts` file and add the contents of the downloaded JSON service account key.
 
@@ -66,7 +66,7 @@ npm install
 
 ### 7. Run the Application
 
-Start the Angular app and Fastify API by running the following command:
+Start the Angular app and Hono API by running the following command:
 
 ```
 npm run serve
@@ -75,14 +75,14 @@ npm run serve
 ### 8. Access the Applications
 
 - Angular app: http://localhost:4200
-- Fastify API: http://localhost:3000
+- Hono API: http://localhost:3000
 
 ### Project Structure
 
 - `app/`: Contains the Angular application.
-- `api/`: Contains the Fastify API.
+- `api/`: Contains the Hono API.
 - `app/src/app/app.config.ts`: Configuration where Angular injects firebase.
-- `api/src/key.ts`: Service account key file for the Fastify API.
+- `api/src/key.ts`: Service account key file for the Hono API.
 
 ### Notes
 

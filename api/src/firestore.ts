@@ -10,10 +10,10 @@ const firestore = getFirestore(
   }),
 );
 
-export const users = firestore.collection('users');
+export const userCollection = firestore.collection('users');
 
 // Real-time listener for the 'users' collection
-users.onSnapshot((snapshot) => {
+userCollection.onSnapshot((snapshot) => {
   snapshot.docChanges().forEach((change) => {
     if (change.type === 'added') {
       console.log('New user:', change.doc.data().name);

@@ -4,6 +4,7 @@
     "Fastify",
     "firebaseapp",
     "firestore",
+    "Hono",
     "pino",
     "RNPE",
     "tailwindcss",
